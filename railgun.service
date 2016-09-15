@@ -1,0 +1,11 @@
+[Unit]
+Description=railgun
+After=network.target
+
+[Service]
+User=railgun
+Group=railgun
+ExecStart=/usr/bin/rg-listener --config=/etc/railgun/railgun.conf
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+post_install() {
+  getent group railgun >/dev/null || groupadd --system railgun
+  getent passwd railgun >/dev/null || useradd --system -g railgun -d /var/lib/railgun -s /bin/false railgun
+
+  install -dm700 var/lib/railgun
+  chown railgun:railgun var/lib/railgun
+}
