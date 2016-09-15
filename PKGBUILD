@@ -1,7 +1,7 @@
 # Maintainer: Jason R. McNeil <jason@jasonrm.net>
 
 pkgname=railgun
-pkgver=latest
+pkgver=5.2.0
 pkgrel=1
 pkgdesc="Railgun is a WAN optimization technology developed by CloudFlare and is available to CloudFlare Business and Enterprise customers, as well as Optimized Partners."
 arch=('x86_64')
@@ -11,15 +11,15 @@ install=railgun.install
 depends=()
 makedepends=('rpmextract')
 backup=('etc/railgun/railgun.conf' 'etc/railgun/railgun-nat.conf')
-source=("https://www.cloudflare.com/static/misc/railgun/centos/railgun-el7.latest.rpm" "railgun.service")
-noextract=('railgun-el7.latest.rpm')
-sha512sums=('d30eb7ed7e150df3b5b47783722dc46b301c88a9e7ffd0c2e608add4ab5922261b0b39a70b516206367dada43e8f77bb6be03460ae664151bcf98c78d12cc2e3'
+source=("railgun.rpm:http://pkg.cloudflare.com/pool/el7/railgun/r/railgun-stable-${pkgver}-${pkgrel}.el7.src.rpm/railgun-stable-${pkgver}-${pkgrel}.el7.x86_64.rpm" "railgun.service")
+noextract=('railgun.rpm')
+sha512sums=('57d9272ffd8831507fce60a16168f5bb8144c475eb3201c169321f2a54e77ee08778cbc933e4d6025d849c5c030e4a87ea57c4a8f12dc2f1f151420929cccd4e'
             '2b765bbeafde2aa6a12ae0cdb5b998c04b2860e48ebf950e3289a02539e966c39918717ff2d43c220db6a7a44523ff10e8b633a0f0651211e4e5a2bc8e6c9dc6')
 
 package() {
   cd "${pkgdir}"
 
-  rpmextract.sh "${srcdir}/railgun-el7.latest.rpm"
+  rpmextract.sh "${srcdir}/railgun.rpm"
 
   # Remove RedHat specific files
   rm -r "${pkgdir}/etc/init.d"
